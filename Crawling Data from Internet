@@ -1,0 +1,30 @@
+from turtle import title
+from unicodedata import name
+import urllib3
+from bs4 import BeautifulSoup
+import requests
+
+
+
+url="http://quotes.toscrape.com/tag/humor/page/1/"
+page=requests.get(url)
+
+soup=BeautifulSoup(page.content,'html.parser')
+lists=soup.find_all("div",class_="quote")
+
+
+for list in lists:
+ 
+
+    quote=list.find("span",class_="text")
+    author=list.find("small",class_="author")
+    tags=[]
+    for i in list.find('div',class_="tags"):
+        tags.append(list.find("a",class_="tag"))
+
+    #print(quote)
+    #print(author)
+    print(tags)
+    
+
+    
